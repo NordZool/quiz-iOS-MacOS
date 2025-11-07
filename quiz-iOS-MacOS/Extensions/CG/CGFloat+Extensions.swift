@@ -1,0 +1,15 @@
+//
+//  CGFloat.swift
+//  quiz-ios
+//
+//  Created by Никита on 6.11.25.
+//
+
+import Foundation
+
+extension CGFloat {
+    static let veryBugButtonHeight: CGFloat = 80
+    static let bigButtonHeight: CGFloat = 50
+    static let commonButtonHeight: CGFloat = 46
+    static let smallButtonHeight: CGFloat = 32
+}

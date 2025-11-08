@@ -12,7 +12,7 @@ struct ChooseCategoryView: View {
     let sections: [SectionModel] = [SectionModel.init(title: "Test", cells: [GridItemModel.init(text: "jlewrlgjrltr"), GridItemModel.init(text: "fedkjf"), GridItemModel.init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), GridItemModel.init(text: "553"), GridItemModel.init(text: "343"),]),
                                   SectionModel.init(title: "Test", cells: [GridItemModel.init(text: "jlewrlgjrltr"), GridItemModel.init(text: "fedkjf"), GridItemModel.init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), GridItemModel.init(text: "553"), GridItemModel.init(text: "343"),])]
     
-    @State private var selectedCell: GridItemModel? = nil
+    @State private var selectedCategory: GridItemModel? = nil
     
     
     var body: some View {
@@ -21,8 +21,8 @@ struct ChooseCategoryView: View {
                 
                 self.topTitleView
                 
-                ChooseCategoryGridView(sections:  self.sections,
-                                       selectedCell: self.$selectedCell)
+                FlexibleSectionedGridView(sections:  self.sections,
+                                       selectedCell: self.$selectedCategory)
                 .padding(.top, 20)
             }
             .padding(.horizontal, 16)
@@ -43,20 +43,7 @@ private extension ChooseCategoryView {
     }
 }
 
-
-struct GridCellView: View {
-    let text: String
-    
-    var body: some View {
-        Text(text)
-            .lineLimit(1)
-            .padding()
-        //            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.blue.opacity(0.1))
-    }
-}
-
-
+// MARK: - Под снос, когда будут реальные
 struct SectionModel {
     let id = UUID()
     let title: String
@@ -70,7 +57,6 @@ extension SectionModel : FlexibleGridViewSection {
 struct GridItemModel : Hashable & FlexibleGridViewCell {
     let text: String
 }
-
 
 #Preview {
     ChooseCategoryView()

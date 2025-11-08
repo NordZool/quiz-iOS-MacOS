@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChooseCategoryGridView<S: FlexibleGridViewSection>: View {
+struct FlexibleSectionedGridView<S: FlexibleGridViewSection>: View {
     let sections: [S]
     
     @Binding var selectedCell: S.Cell?
@@ -27,7 +27,7 @@ struct ChooseCategoryGridView<S: FlexibleGridViewSection>: View {
     }
 }
 // MARK: - Subview
-private extension ChooseCategoryGridView {
+private extension FlexibleSectionedGridView {
     var header: some View {
         HStack {
             Text("Test")
@@ -53,26 +53,13 @@ private extension ChooseCategoryGridView {
             .primaryAppButtonStyle(tint: cell == self.selectedCell
                                    ? Color.appPrimary
                                    : Color.defaultBackground)
-            
-//            .animation(.easeInOut, value: self.selectedCell)
         }
     }
 }
 
 #Preview {
-    ChooseCategoryGridView(sections: [SectionModel.init(title: "Test", cells: [.init(text: "jlewrlgjrltr"), .init(text: "fedkjf"), .init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), .init(text: "553"), .init(text: "343"),]),
+    FlexibleSectionedGridView(sections: [SectionModel.init(title: "Test", cells: [.init(text: "jlewrlgjrltr"), .init(text: "fedkjf"), .init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), .init(text: "553"), .init(text: "343"),]),
                                       SectionModel.init(title: "Test", cells: [.init(text: "jlewrlgjrltr"), .init(text: "fedkjf"), .init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), .init(text: "553"), .init(text: "343"),])],
                            selectedCell: .init(get: {nil}, set: {_ in}))
     .padding(.horizontal)
-}
-
-protocol FlexibleGridViewSection : Identifiable {
-    associatedtype Cell : FlexibleGridViewCell & Hashable
-    
-    var title: String { get }
-    var cells: [Cell] { get }
-}
-
-protocol FlexibleGridViewCell {
-    var text: String { get }
 }

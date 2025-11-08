@@ -8,25 +8,22 @@
 import SwiftUI
 
 extension Button {
-    func primaryAppButtonStyle<S: ShapeStyle>(backgroundStyle: S = Gradient.primary) -> some View {
+    func primaryAppButtonStyle(tint: Color = .appPrimary) -> some View {
         self
-            .appButtonStyle(backgroundStyle: backgroundStyle)
+            .appButtonStyle(tint: tint)
             .foregroundStyle(.appForegroundDark)
     }
     
     @ViewBuilder
-    func appButtonStyle<S: ShapeStyle>(backgroundStyle: S = Color.defaultBackground) -> some View {
+    func appButtonStyle(tint: Color = .defaultBackground) -> some View {
         if #available(iOS 26.0, *) {
             self
-                .buttonStyle(.glass)
-                .background(Capsule()
-                    .fill(backgroundStyle)
-                        .padding(2)
-                )       
+                .buttonStyle(.glassProminent)
+                .tint(tint)
         } else {
             self
                 .buttonStyle(.plain)
-                .background(backgroundStyle)
+                .tint(tint)
                 .clipped()
                 .cornerRadius(12)
                 .shadow(color: .primary.opacity(0.15), radius: 8)

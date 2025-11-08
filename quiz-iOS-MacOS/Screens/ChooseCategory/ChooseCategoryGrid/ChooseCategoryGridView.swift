@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-struct ChooseCategoryGridView<S: FlexibleGridViewSection, C: FlexibleGridViewCell>: View {
+struct ChooseCategoryGridView<S: FlexibleGridViewSection>: View {
     let sections: [S]
     
+    @Binding var selectedCell: S.Cell?
+    
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 0) {
-                ForEach(sections) { section in
-                    Section {
-                        self.sectionContent(for: section)
-                    } header: {
-                        self.header
+        LazyVStack(spacing: 0) {
+            ForEach(sections) { section in
+                Section {
+                    self.sectionContent(for: section)
+                } header: {
+                    self.header
                         .padding(.bottom, -15)
-                    }
-                    .padding(.bottom, 30)
                 }
+                .padding(.bottom, 30)
             }
         }
     }
@@ -39,20 +39,31 @@ private extension ChooseCategoryGridView {
     func sectionContent(for section: S) -> some View {
         FlexibleView(data: section.cells, spacing: 14, alignment: .leading) { cell in
             Button {
-                //
+                withAnimation(.linear(duration: 0.1)) {
+                    self.selectedCell = if cell == self.selectedCell {
+                        nil
+                    } else {
+                        cell
+                    }
+                }
             } label: {
                 Text(cell.text)
                     .frame(height: .smallButtonHeight)
             }
-            .primaryAppButtonStyle()
-
+            .primaryAppButtonStyle(tint: cell == self.selectedCell
+                                   ? Color.appPrimary
+                                   : Color.defaultBackground)
+            
+//            .animation(.easeInOut, value: self.selectedCell)
         }
     }
 }
 
 #Preview {
-    ChooseCategoryGridView<SectionModel, GridItemModel>(sections: [SectionModel.init(title: "Test", cells: [.init(text: "jlewrlgjrltr"), .init(text: "fedkjf"), .init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), .init(text: "553"), .init(text: "343"),]),
-                                      SectionModel.init(title: "Test", cells: [.init(text: "jlewrlgjrltr"), .init(text: "fedkjf"), .init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), .init(text: "553"), .init(text: "343"),])])
+    ChooseCategoryGridView(sections: [SectionModel.init(title: "Test", cells: [.init(text: "jlewrlgjrltr"), .init(text: "fedkjf"), .init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), .init(text: "553"), .init(text: "343"),]),
+                                      SectionModel.init(title: "Test", cells: [.init(text: "jlewrlgjrltr"), .init(text: "fedkjf"), .init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), .init(text: "553"), .init(text: "343"),])],
+                           selectedCell: .init(get: {nil}, set: {_ in}))
+    .padding(.horizontal)
 }
 
 protocol FlexibleGridViewSection : Identifiable {

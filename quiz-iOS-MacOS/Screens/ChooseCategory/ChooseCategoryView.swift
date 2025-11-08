@@ -9,18 +9,25 @@ import SwiftUI
 
 struct ChooseCategoryView: View {
     
+    let sections: [SectionModel] = [SectionModel.init(title: "Test", cells: [GridItemModel.init(text: "jlewrlgjrltr"), GridItemModel.init(text: "fedkjf"), GridItemModel.init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), GridItemModel.init(text: "553"), GridItemModel.init(text: "343"),]),
+                                  SectionModel.init(title: "Test", cells: [GridItemModel.init(text: "jlewrlgjrltr"), GridItemModel.init(text: "fedkjf"), GridItemModel.init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), GridItemModel.init(text: "553"), GridItemModel.init(text: "343"),])]
+    
+    @State private var selectedCell: GridItemModel? = nil
+    
     
     var body: some View {
-        VStack(alignment: .leading) {
-            
-            self.topTitleView
-            
-            ChooseCategoryGridView<SectionModel, GridItemModel>(sections:  [SectionModel.init(title: "Test", cells: [GridItemModel.init(text: "jlewrlgjrltr"), GridItemModel.init(text: "fedkjf"), GridItemModel.init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), GridItemModel.init(text: "553"), GridItemModel.init(text: "343"),]),
-                                               SectionModel.init(title: "Test", cells: [GridItemModel.init(text: "jlewrlgjrltr"), GridItemModel.init(text: "fedkjf"), GridItemModel.init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), GridItemModel.init(text: "553"), GridItemModel.init(text: "343"),])])
+        ScrollView {
+            VStack(alignment: .leading) {
+                
+                self.topTitleView
+                
+                ChooseCategoryGridView(sections:  self.sections,
+                                       selectedCell: self.$selectedCell)
                 .padding(.top, 20)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 20)
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 20)
     }
 }
 // MARK: - Subviews

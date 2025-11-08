@@ -13,7 +13,7 @@ struct ContentView: View {
             Spacer()
             
             Text("QUIZ")
-                .foregroundStyle(Gradient.primary.opacity(0.6))
+                .foregroundStyle(.appPrimary)
                 .font(.system(size: 90, weight: .semibold))
             
             Spacer()

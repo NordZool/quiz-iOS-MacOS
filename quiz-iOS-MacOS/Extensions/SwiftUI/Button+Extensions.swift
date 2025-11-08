@@ -21,7 +21,7 @@ extension Button {
                 .buttonStyle(.glass)
                 .background(Capsule()
                     .fill(backgroundStyle)
-                        .padding(1)
+                        .padding(2)
                 )       
         } else {
             self

@@ -9,4 +9,7 @@ import Foundation
 public struct QuizDTO : Codable {
     public let id: UUID
     public let name: String
+    public let questionsCount: Int?
+    public let answersCount: Int?
+    public let rightAnswersCount: Int?
 }

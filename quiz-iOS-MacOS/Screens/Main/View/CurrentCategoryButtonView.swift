@@ -40,7 +40,7 @@ struct CurrentCategoryButtonView: View {
             .padding(.vertical, 4)
             .padding(.horizontal, 16)
         })
-        .appButtonStyle()
+        .appButtonStyled()
         .foregroundStyle(.primary)
     }
 }

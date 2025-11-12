@@ -38,7 +38,7 @@ struct LastGameInfoButtonView: View {
             .padding(.vertical, 8)
             .padding(.horizontal, 16)
         })
-        .appButtonStyle()
+        .appButtonStyled()
         .foregroundStyle(.primary)
     }
 }

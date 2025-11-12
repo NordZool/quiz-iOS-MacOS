@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var selectedQuizVM: SelectedQuizViewModel
+    
+    @State private var isChooseQuizSheetPresented: Bool = false
+    
     var body: some View {
         VStack(spacing: 10) {
             Spacer()
@@ -19,8 +23,11 @@ struct ContentView: View {
             Spacer()
             Spacer()
             
-            CurrentCategoryButtonView(currentCategoryName: "Основы") {
-                //
+            CurrentCategoryButtonView(currentCategoryName: selectedQuizVM.quiz?.name) {
+                self.isChooseQuizSheetPresented.toggle()
+            }
+            .sheet(isPresented: self.$isChooseQuizSheetPresented) {
+                SelectingQuizView()
             }
             
             LastGameInfoButtonView(model: .init(categoryText: "Основы",
@@ -55,7 +62,7 @@ private extension ContentView {
                 .frame(maxWidth: .infinity,
                        maxHeight: .commonButtonHeight)
         }
-        .primaryAppButtonStyle()
+        .primaryAppButtonStyled()
     }
     
     var startGameButton: some View {
@@ -67,10 +74,11 @@ private extension ContentView {
                 .frame(maxWidth: .infinity,
                        maxHeight: .bigButtonHeight)
         }
-        .primaryAppButtonStyle()
+        .primaryAppButtonStyled()
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(SelectedQuizViewModel())
 }

@@ -18,7 +18,7 @@ struct FlexibleSectionedGridView<S: FlexibleGridViewSection>: View {
                 Section {
                     self.sectionContent(for: section)
                 } header: {
-                    self.header
+                    self.header(for: section)
                         .padding(.bottom, -15)
                 }
                 .padding(.bottom, 30)
@@ -28,10 +28,10 @@ struct FlexibleSectionedGridView<S: FlexibleGridViewSection>: View {
 }
 // MARK: - Subview
 private extension FlexibleSectionedGridView {
-    var header: some View {
+    func header(for section: S) -> some View {
         HStack {
-            Text("Test")
-                .font(.title3)
+            Text(section.title)
+                .font(.headline)
             Spacer()
         }
     }
@@ -50,7 +50,7 @@ private extension FlexibleSectionedGridView {
                 Text(cell.text)
                     .frame(height: .smallButtonHeight)
             }
-            .primaryAppButtonStyle(tint: cell == self.selectedCell
+            .primaryAppButtonStyled(tint: cell == self.selectedCell
                                    ? Color.appPrimary
                                    : Color.defaultBackground)
         }
@@ -58,8 +58,7 @@ private extension FlexibleSectionedGridView {
 }
 
 #Preview {
-    FlexibleSectionedGridView(sections: [SectionModel.init(title: "Test", cells: [.init(text: "jlewrlgjrltr"), .init(text: "fedkjf"), .init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), .init(text: "553"), .init(text: "343"),]),
-                                      SectionModel.init(title: "Test", cells: [.init(text: "jlewrlgjrltr"), .init(text: "fedkjf"), .init(text: "ekrjekjfkjfrkfdjfkdjjkkjkfkdjkfdjkffdkl"), .init(text: "553"), .init(text: "343"),])],
-                           selectedCell: .init(get: {nil}, set: {_ in}))
+    FlexibleSectionedGridView(sections: QuizGroupDTO.mock,
+                              selectedCell: .init(get: {nil}, set: {_ in}))
     .padding(.horizontal)
 }

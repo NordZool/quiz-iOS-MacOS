@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct QuizQuestionView: View {
-    private let question: String = "Question"
-    private let answers: [String] = ["1", "2", "3"]
+    let question: QuizQuestionDTO
     
     var body: some View {
         GeometryReader { geometry in
@@ -20,25 +19,17 @@ struct QuizQuestionView: View {
                     .frame(height: geometry.size.height * 0.5)
                 
                 // Нижняя часть — кнопки
-                VStack(spacing: 12) {
-                    ForEach(self.answers, id: \.self) { answer in
-                        self.answerButton(for: answer) {
-                            //
-                        }
-                    }
-                }
+                self.answersView
                 .frame(height: geometry.size.height * 0.5)
             }
         }
-//        .padding()
-        
     }
 }
 // MARK: - Subviews
 extension QuizQuestionView {
     var questionView: some View {
         ZStack(alignment: .topTrailing) {
-            Text(self.question)
+            Text(self.question.text)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .font(.title2)
                 .background(.defaultBackground)
@@ -52,16 +43,26 @@ extension QuizQuestionView {
         }
     }
     
-    func answerButton(for answer: String, action: @escaping () -> Void) -> some View {
+    var answersView: some View {
+        VStack(spacing: 12) {
+            ForEach(self.question.answers ?? []) { answer in
+                self.answerButton(for: answer) {
+                    //
+                }
+            }
+        }
+    }
+    
+    func answerButton(for answer: QuizQuestionAnswerDTO, action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            Text(answer)
+            Text(answer.text)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .primaryAppButtonStyled()
+        .primaryAppButtonStyled(tint: self.question.answerColor(for: answer))
         
     }
 }
 
 #Preview {
-    QuizQuestionView()
+    QuizQuestionView(question: .mock())
 }

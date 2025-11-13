@@ -6,11 +6,13 @@
 //
 import Foundation
 
-public struct QuizDTO : Codable {
+public struct QuizDTO : Codable & Sendable  {
     public var id: UUID
     public var name: String
     public var questionsCount: Int?
     public var answersCount: Int?
     public var rightAnswersCount: Int?
     public var hintsUseCount: Int?
+    
+    public var questions: [QuizQuestionDTO]?
 }

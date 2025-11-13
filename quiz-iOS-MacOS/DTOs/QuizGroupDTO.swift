@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct QuizGroupDTO: Codable {
+public struct QuizGroupDTO: Codable & Sendable  {
     public var id: UUID
     public var title: String
     public var quizzes: [QuizDTO]

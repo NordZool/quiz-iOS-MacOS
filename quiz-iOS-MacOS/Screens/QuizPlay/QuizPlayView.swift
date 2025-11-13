@@ -20,13 +20,14 @@ struct QuizPlayView: View {
                                 QuizQuestionView()
                                     .padding(.horizontal)
                                     .padding(.top)
-                                    .padding(.bottom, 50)
+                                    .padding(.bottom, 56)
                                     .frame(height: geometry.size.height)
                                 
                                 
                             }
                         }
-                        .padding(.top, 32)
+                        .padding(.top, 36)
+                        .padding(.bottom, -36)
                     }
                     .scrollTargetBehavior(.paging)
                     

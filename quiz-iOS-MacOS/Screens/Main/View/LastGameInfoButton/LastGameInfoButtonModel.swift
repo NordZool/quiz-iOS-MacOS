@@ -16,7 +16,7 @@ struct LastGameInfoButtonModel {
         }
         
         return .init(categoryText: quiz.name,
-                     questionsText: "\(answersCount)/\(questionsCount)",
+                     questionsText: "\(answersCount) из \(questionsCount) (подсказок \(quiz.hintsUseCount ?? 0))",
                      rightAnswersText: String(rightAnswersCount))
     }
     

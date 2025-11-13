@@ -17,6 +17,7 @@ extension Button {
     func appButtonStyled(tint: Color = .defaultBackground) -> some View {
         self
             .defaultStyled()
+            .buttonBorderShape(.roundedRectangle(radius: 16))
             .tint(tint)
     }
     
@@ -26,7 +27,8 @@ extension Button {
             self.buttonStyle(.glassProminent)
         } else {
             self.buttonStyle(.borderedProminent)
-                .shadow(color: .black.opacity(0.15), radius: 8)
+                .appShadow()
+                
         }
     }
 }

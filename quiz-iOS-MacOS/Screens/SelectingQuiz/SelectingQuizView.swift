@@ -42,13 +42,12 @@ private extension SelectingQuizView {
             HStack(alignment: .top) {
                 Text("Выбор категории")
                     .font(.title2)
+                
                 Spacer()
-                Button {
+                
+                SimpleImagedButton.close {
                     self.dismiss.callAsFunction()
-                } label: {
-                    Image(systemName: "xmark")
                 }
-                .primaryAppButtonStyled(tint: .defaultBackground)
             }
             Text("\(self.selectedQuizVM.quiz?.name ?? "") \(self.selectedQuizVM.quiz?.formattedQuestionsCount, default: "")")
                 .font(.footnote)

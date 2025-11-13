@@ -8,8 +8,8 @@
 import Foundation
 
 public struct QuizGroupDTO: Codable {
-    public let id: UUID
-    public let title: String
-    public let quizzes: [QuizDTO]
+    public var id: UUID
+    public var title: String
+    public var quizzes: [QuizDTO]
 }
 

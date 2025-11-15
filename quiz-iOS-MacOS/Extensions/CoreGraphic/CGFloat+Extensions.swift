@@ -12,4 +12,8 @@ extension CGFloat {
     static let bigButtonHeight: CGFloat = 50
     static let commonButtonHeight: CGFloat = 46
     static let smallButtonHeight: CGFloat = 32
+    
+    static let appTopViewHorizontalPadding: CGFloat = 20
+    static let appTopViewTopPadding: CGFloat = 20
+    static let appTopViewBottomPadding: CGFloat = 8
 }

@@ -12,4 +12,17 @@ extension View {
         self
             .shadow(color: .black.opacity(0.15), radius: 8)
     }
+    
+    func appTopView() -> some View {
+        self
+            .padding(.horizontal, .appTopViewHorizontalPadding)
+            .padding(.top, .appTopViewTopPadding)
+            .padding(.bottom, .appTopViewBottomPadding)
+        .background(
+            Rectangle()
+            .fill(.secondaryBackground)
+            .ignoresSafeArea()
+
+        )
+    }
 }

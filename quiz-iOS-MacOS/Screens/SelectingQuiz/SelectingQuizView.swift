@@ -13,20 +13,20 @@ struct SelectingQuizView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    
-    
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                self.topTitleView
+        VStack(alignment: .leading, spacing: 0) {
+            self.topTitleView
+                .appTopView()
                 
+            
+            ScrollView {
                 FlexibleSectionedGridView(sections:  self.viewModel.quizGroups,
                                           selectedCell: self.$selectedQuizVM.quiz)
-                .padding(.top, 20)
+                .padding(.horizontal, .appTopViewHorizontalPadding)
+                .padding(.vertical, 20)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 20)
         }
+        
         .onChange(of: self.selectedQuizVM.quiz) { oldValue, newValue in
             self.selectedQuizVM.postSelectedQuiz()
             if newValue != nil {
@@ -39,16 +39,10 @@ struct SelectingQuizView: View {
 private extension SelectingQuizView {
     var topTitleView: some View {
         VStack(alignment: .leading) {
-            HStack(alignment: .top) {
-                Text("Выбор категории")
-                    .font(.title2)
-                
-                Spacer()
-                
-                SimpleImagedButton.close {
-                    self.dismiss.callAsFunction()
-                }
+            TitleWithCloseButtonView(title: "Выбор категории") {
+                self.dismiss.callAsFunction()
             }
+            
             Text("\(self.selectedQuizVM.quiz?.name ?? "") \(self.selectedQuizVM.quiz?.formattedQuestionsCount, default: "")")
                 .font(.footnote)
                 .foregroundStyle(.secondary)

@@ -10,26 +10,14 @@ import SwiftUI
 struct QuizzesHistoryView: View {
     @StateObject var vm: QuizzesHistoryViewModel = .init()
     
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Text("История игр")
-                    .font(.largeTitle)
-                    .bold()
-                Spacer()
+            TitleWithCloseButtonView(title: "История игр") {
+                self.dismiss.callAsFunction()
             }
-            .foregroundStyle(.appForegroundDark)
-            .padding(.horizontal, 20)
-            .padding(.top, 20)
-            .padding(.bottom, 8)
-            .frame(maxWidth: .infinity)
-                .background(
-                    Rectangle()
-                    .fill(.secondaryBackground)
-                    .ignoresSafeArea()
-
-                )
+            .appTopView()
             
             
             ScrollView {
@@ -38,7 +26,7 @@ struct QuizzesHistoryView: View {
                         QuizInfoButtonView(model: .quiz(quiz) ?? .empty) {
                             //
                         }
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, .appTopViewHorizontalPadding)
                     }
                 }
                 .padding(.vertical, 12)

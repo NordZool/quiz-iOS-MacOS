@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct QuizzesHistoryView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     @StateObject var vm: QuizzesHistoryViewModel = .init()
     
-    @Environment(\.dismiss) private var dismiss
+    @State private var selectedQuizForResult: QuizDTO?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -24,13 +26,17 @@ struct QuizzesHistoryView: View {
                 LazyVStack(spacing: 12) {
                     ForEach(self.vm.quizzes) { quiz in
                         QuizInfoButtonView(model: .quiz(quiz) ?? .empty) {
-                            //
+                            self.selectedQuizForResult = quiz
                         }
                         .padding(.horizontal, .appTopViewHorizontalPadding)
+                        .sheet(item: self.$selectedQuizForResult) { quiz in
+                            QuizResultView(vm: .init(quizId: quiz.id))
+                        }
                     }
                 }
                 .padding(.vertical, 12)
             }
+            .background(.secondaryBackground)
         }
     }
 }

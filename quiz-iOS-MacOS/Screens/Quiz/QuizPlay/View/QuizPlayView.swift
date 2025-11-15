@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct QuizPlayView: View {
+    @Environment(\.dismiss) var dismiss
+    
     @StateObject var vm: QuizPlayViewModel
+    
+    let onQuizEnd: ((QuizDTO) -> ())?
     
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 ZStack(alignment: .top) {
                     self.pagingQuestionsView(height: geometry.size.height)
+                        .background(.secondaryBackground)
                     
                     self.topView
                 }
@@ -33,7 +38,7 @@ struct QuizPlayView: View {
 extension QuizPlayView {
     @ViewBuilder
     func pagingQuestionsView(height: CGFloat) -> some View {
-        let topInset: CGFloat = 50
+        let topInset: CGFloat = 55
         
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
@@ -57,14 +62,16 @@ extension QuizPlayView {
         ZStack {
             HStack {
                 Text(vm.quiz.rightAnswersCountAndPercentageText ?? "")
+                
                 Spacer()
+                
                 Button {
-                    //
+                    self.dismiss.callAsFunction()
+                    self.onQuizEnd?(self.vm.quiz)
                 } label: {
                     Text("Завершить")
                 }
                 .appButtonStyled()
-
             }
 
             Text(vm.quiz.answerToQuestionsText ?? "")
@@ -76,5 +83,5 @@ extension QuizPlayView {
 }
 
 #Preview {
-    QuizPlayView(vm: .init(quiz: .mock.first!))
+    QuizPlayView(vm: .init(quiz: .mock.first!), onQuizEnd: nil)
 }

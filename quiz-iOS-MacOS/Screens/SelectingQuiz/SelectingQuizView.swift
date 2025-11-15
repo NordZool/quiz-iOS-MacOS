@@ -25,6 +25,7 @@ struct SelectingQuizView: View {
                 .padding(.horizontal, .appTopViewHorizontalPadding)
                 .padding(.vertical, 20)
             }
+            .background(.secondaryBackground)
         }
         
         .onChange(of: self.selectedQuizVM.quiz) { oldValue, newValue in

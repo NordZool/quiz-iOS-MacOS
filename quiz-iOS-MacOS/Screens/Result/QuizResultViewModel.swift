@@ -6,11 +6,12 @@
 //
 
 import Combine
+import Foundation
 
 class QuizResultViewModel : ObservableObject {
     @Published var questions: [QuizQuestionDTO]
     
-    init(quizId: Int) {
+    init(quizId: UUID) {
         self.questions = QuizQuestionDTO.mocks + QuizQuestionDTO.mocks + QuizQuestionDTO.mocks
     }
 }

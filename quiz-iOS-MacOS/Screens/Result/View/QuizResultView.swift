@@ -29,10 +29,11 @@ struct QuizResultView: View {
                 .padding(.horizontal, .appTopViewHorizontalPadding)
                 .padding(.vertical, 16)
             }
+            .background(.secondaryBackground)
         }
     }
 }
 
 #Preview {
-    QuizResultView(vm: .init(quizId: 0))
+    QuizResultView(vm: .init(quizId: .init()))
 }

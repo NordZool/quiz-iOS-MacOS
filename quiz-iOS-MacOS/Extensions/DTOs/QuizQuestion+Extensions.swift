@@ -12,9 +12,9 @@ extension QuizQuestionDTO {
         guard let userAnswer else { return .appPrimary }
         
         if answer.isCorrect == true {
-            return .green
+            return .correctAnswer
         } else if userAnswer == answer {
-            return .red
+            return .wrongAnswer
         } else {
             return .appPrimary
         }

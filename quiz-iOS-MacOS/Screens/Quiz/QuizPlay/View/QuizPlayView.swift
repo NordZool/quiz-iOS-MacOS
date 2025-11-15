@@ -71,15 +71,7 @@ extension QuizPlayView {
                 
         }
         .foregroundStyle(.appForegroundDark)
-        .padding(.horizontal)
-        .padding(.bottom)
-        .frame(maxWidth: .infinity)
-            .background(
-                Rectangle()
-                .fill(.secondaryBackground)
-                .ignoresSafeArea()
-
-            )
+        .appTopView()
     }
 }
 

@@ -11,7 +11,9 @@ public struct QuizQuestionDTO : Codable & Sendable {
     public var id: UUID
     public var text: String
     public var answers: [QuizQuestionAnswerDTO]?
+    public var rightAnswer: QuizQuestionAnswerDTO? 
     public var userAnswer: QuizQuestionAnswerDTO?
+    public var status: QuizQuestionStatus?
 }
 
 // MARK: - DEBUG

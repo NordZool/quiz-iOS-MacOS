@@ -11,6 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var selectedQuizVM: SelectedQuizViewModel
     
     @State private var isChooseQuizSheetPresented: Bool = false
+    @State private var isHistoryQuizzesSheetPresented: Bool = false
     
     var body: some View {
         VStack(spacing: 10) {
@@ -30,7 +31,7 @@ struct ContentView: View {
                 SelectingQuizView()
             }
             
-            LastGameInfoButtonView(model: .init(categoryText: "Основы",
+            QuizInfoButtonView(model: .init(title: "Ластовая: ", categoryText: "Основы",
                                                 questionsText: "2/42",
                                                 rightAnswersText: "0")) {
                 
@@ -38,6 +39,9 @@ struct ContentView: View {
             
             self.historyButton
                 .padding(.top, 14)
+                .sheet(isPresented: self.$isHistoryQuizzesSheetPresented) {
+                    QuizzesHistoryView()
+                }
             
             self.startGameButton
             
@@ -55,7 +59,7 @@ struct ContentView: View {
 private extension ContentView {
     var historyButton: some View {
         Button {
-            //
+            self.isHistoryQuizzesSheetPresented.toggle()
         } label: {
             Text("История игр")
                 .font(.title3)

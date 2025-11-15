@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct LastGameInfoButtonView: View {
-    private let model: LastGameInfoButtonModel
+struct QuizInfoButtonView: View {
+    private let model: QuizInfoButtonModel
     private let action: @MainActor () -> Void
     
-    init(model: LastGameInfoButtonModel,
+    init(model: QuizInfoButtonModel,
          action: @escaping @MainActor () -> Void) {
         self.model = model
         self.action = action
@@ -21,8 +21,10 @@ struct LastGameInfoButtonView: View {
         Button(action: self.action, label: {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Информация о прошлой игре")
-                        .font(.subheadline)
+                    if let title = model.title {
+                        Text(title)
+                            .font(.subheadline)
+                    }
                     Text("Категория: \(model.categoryText)")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
@@ -44,7 +46,7 @@ struct LastGameInfoButtonView: View {
 }
 
 #Preview {
-    LastGameInfoButtonView(model: .init(categoryText: "Основы",
+    QuizInfoButtonView(model: .init(title: "Последняя игра:", categoryText: "Основы",
                                         questionsText: "2/42",
                                         rightAnswersText: "0"), action: { })
         .frame(width: 300)

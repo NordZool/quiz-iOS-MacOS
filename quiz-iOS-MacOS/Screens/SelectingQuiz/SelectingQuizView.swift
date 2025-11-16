@@ -14,18 +14,18 @@ struct SelectingQuizView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            self.topTitleView
-                .appTopView()
-                
-            
+        ZStack(alignment: .top) {
             ScrollView {
                 FlexibleSectionedGridView(sections:  self.viewModel.quizGroups,
                                           selectedCell: self.$selectedQuizVM.quiz)
+                .padding(.top, .forEqualToTopTitleViewPadding + 16)
                 .padding(.horizontal, .appTopViewHorizontalPadding)
                 .padding(.vertical, 20)
             }
             .background(.secondaryBackground)
+            
+            self.topTitleView
+                .appTopView()
         }
         
         .onChange(of: self.selectedQuizVM.quiz) { oldValue, newValue in

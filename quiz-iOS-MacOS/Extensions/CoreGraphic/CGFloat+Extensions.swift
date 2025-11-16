@@ -16,4 +16,6 @@ extension CGFloat {
     static let appTopViewHorizontalPadding: CGFloat = 20
     static let appTopViewTopPadding: CGFloat = 20
     static let appTopViewBottomPadding: CGFloat = 8
+    
+    static let forEqualToTopTitleViewPadding: CGFloat = 57
 }

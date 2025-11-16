@@ -16,12 +16,7 @@ struct QuizResultView: View {
     
     var body: some View {
         ZStack {
-            VStack(alignment: .leading, spacing: 0) {
-                TitleWithCloseButtonView(title: "Отчет по игре") {
-                    dismiss.callAsFunction()
-                }
-                .appTopView()
-                
+            ZStack(alignment: .top) {
                 ScrollView {
                     VStack(spacing: 22) {
                         ForEach(Array(zip(vm.questions.indices, vm.questions)), id: \.0) { (index,  question) in
@@ -31,10 +26,16 @@ struct QuizResultView: View {
                             }
                         }
                     }
+                    .padding(.top, .forEqualToTopTitleViewPadding)
                     .padding(.horizontal, .appTopViewHorizontalPadding)
                     .padding(.vertical, 16)
                 }
                 .background(.secondaryBackground)
+                
+                TitleWithCloseButtonView(title: "Отчет по игре") {
+                    dismiss.callAsFunction()
+                }
+                .appTopView()
             }
             
             PopupContainer(item: self.$hintedQuestion) { question in

@@ -20,9 +20,12 @@ extension View {
             .padding(.bottom, .appTopViewBottomPadding)
         .background(
             Rectangle()
+            
             .fill(.secondaryBackground)
             .ignoresSafeArea()
-
+            .appShadow()
         )
+        
+        
     }
 }

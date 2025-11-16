@@ -15,13 +15,8 @@ struct QuizzesHistoryView: View {
     @State private var selectedQuizForResult: QuizDTO?
     
     var body: some View {
-        VStack(spacing: 0) {
-            TitleWithCloseButtonView(title: "История игр") {
-                self.dismiss.callAsFunction()
-            }
-            .appTopView()
-            
-            
+        ZStack(alignment: .top) {
+
             ScrollView {
                 LazyVStack(spacing: 12) {
                     ForEach(self.vm.quizzes) { quiz in
@@ -34,9 +29,15 @@ struct QuizzesHistoryView: View {
                         }
                     }
                 }
+                .padding(.top, .forEqualToTopTitleViewPadding)
                 .padding(.vertical, 12)
             }
             .background(.secondaryBackground)
+            
+            TitleWithCloseButtonView(title: "История игр") {
+                self.dismiss.callAsFunction()
+            }
+            .appTopView()
         }
     }
 }

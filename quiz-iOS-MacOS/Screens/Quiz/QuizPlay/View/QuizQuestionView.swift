@@ -9,6 +9,7 @@ import SwiftUI
 
 struct QuizQuestionView: View {
     let question: QuizQuestionDTO
+    let hintButtonAction: (() -> Void)?
     
     var body: some View {
         GeometryReader { geometry in
@@ -37,7 +38,7 @@ extension QuizQuestionView {
                 .appShadow()
             
             SimpleImagedButton.info {
-                //
+                self.hintButtonAction?()
             }
             .padding()
         }
@@ -64,5 +65,5 @@ extension QuizQuestionView {
 }
 
 #Preview {
-    QuizQuestionView(question: .mock())
+    QuizQuestionView(question: .mock(), hintButtonAction: nil)
 }

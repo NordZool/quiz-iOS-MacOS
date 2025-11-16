@@ -10,7 +10,7 @@ import SwiftUI
 struct QuizResultQuestionView: View {
     let index: Int
     let question: QuizQuestionDTO
-    
+    let showTheory: (() -> Void)?
     
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
@@ -51,9 +51,7 @@ extension QuizResultQuestionView {
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
-            Button {
-                //
-            } label: {
+            Button(action: self.showTheory ?? { }) {
                 Text("Показать теорию")
                     .padding(.vertical,  6)
                     .frame(maxWidth: .infinity)
@@ -69,6 +67,6 @@ extension QuizResultQuestionView {
     }
 }
 #Preview {
-    QuizResultQuestionView(index: 0, question: .mock())
+    QuizResultQuestionView(index: 0, question: .mock(), showTheory: nil)
         .padding(.horizontal, 10)
 }

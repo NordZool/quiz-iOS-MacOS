@@ -12,16 +12,26 @@ struct QuizPlayView: View {
     
     @StateObject var vm: QuizPlayViewModel
     
+    @State private var hintedQuestion: QuizQuestionDTO? = nil
+    
     let onQuizEnd: ((QuizDTO) -> ())?
     
     var body: some View {
         GeometryReader { geometry in
-            VStack(spacing: 0) {
-                ZStack(alignment: .top) {
-                    self.pagingQuestionsView(height: geometry.size.height)
-                        .background(.secondaryBackground)
-                    
-                    self.topView
+            ZStack {
+                VStack(spacing: 0) {
+                    ZStack(alignment: .top) {
+                        self.pagingQuestionsView(height: geometry.size.height)
+                            .background(.secondaryBackground)
+                        
+                        self.topView
+                    }
+                }
+                
+                PopupContainer(item: self.$hintedQuestion) { hintedQuestion in
+                    HintView.quizQuestionHint(hint: "Подсказка") {
+                        self.hintedQuestion = nil
+                    }
                 }
             }
         }
@@ -43,11 +53,13 @@ extension QuizPlayView {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
                 ForEach(self.vm.quiz.questions ?? []) { question in
-                    QuizQuestionView(question: question)
-                        .padding(.horizontal)
-                        .padding(.top)
-                        .padding(.bottom, topInset + 30)
-                        .frame(height: height)
+                    QuizQuestionView(question: question) {
+                        self.hintedQuestion = question
+                    }
+                    .padding(.horizontal)
+                    .padding(.top)
+                    .padding(.bottom, topInset + 30)
+                    .frame(height: height)
                     
                     
                 }

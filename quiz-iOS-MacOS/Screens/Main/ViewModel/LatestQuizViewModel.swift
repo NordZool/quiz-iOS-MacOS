@@ -6,6 +6,7 @@
 //
 
 import Combine
+import SharedDTO
 
 class LatestQuizViewModel: ObservableObject {
     @Published var quiz: QuizDTO?

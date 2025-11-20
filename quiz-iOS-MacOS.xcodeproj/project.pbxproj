@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		84AF9D152ECF3D570024CDE8 /* SharedDTO in Frameworks */ = {isa = PBXBuildFile; productRef = 84AF9D142ECF3D570024CDE8 /* SharedDTO */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		847361EA2EBDFA29009C127B /* quiz-iOS-MacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "quiz-iOS-MacOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84AF9D152ECF3D570024CDE8 /* SharedDTO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = "quiz-iOS-MacOS";
 			packageProductDependencies = (
+				84AF9D142ECF3D570024CDE8 /* SharedDTO */,
 			);
 			productName = "quiz-iOS-MacOS";
 			productReference = 847361EA2EBDFA29009C127B /* quiz-iOS-MacOS.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 847361E12EBDFA29009C127B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				846BB30E2ECF421A00494820 /* XCRemoteSwiftPackageReference "SharedDTO" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 847361EB2EBDFA29009C127B /* Products */;
 			projectDirPath = "";
@@ -347,6 +356,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		846BB30E2ECF421A00494820 /* XCRemoteSwiftPackageReference "SharedDTO" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/admin/Projects/Cource work/SharedDTO";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		84AF9D142ECF3D570024CDE8 /* SharedDTO */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedDTO;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 847361E22EBDFA29009C127B /* Project object */;
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedDTO
 
 extension QuizQuestionDTO {
     func answerColor(for answer: QuizQuestionAnswerDTO) -> Color {
@@ -22,7 +23,7 @@ extension QuizQuestionDTO {
 }
 
 // MARK: - Identifiable
-extension QuizQuestionDTO : Identifiable {
+extension QuizQuestionDTO : @retroactive Identifiable {
     
 }
 

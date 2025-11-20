@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import SharedDTO
 
 class StartQuizViewModel : ObservableObject {
     @Published var quiz: QuizDTO?

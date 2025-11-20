@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedDTO
 
 struct QuizResultQuestionView: View {
     let index: Int

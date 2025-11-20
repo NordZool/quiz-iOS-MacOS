@@ -6,6 +6,7 @@
 //
 
 import Combine
+import SharedDTO
 
 class QuizzesHistoryViewModel : ObservableObject {
     @Published var quizzes: [QuizDTO] = []

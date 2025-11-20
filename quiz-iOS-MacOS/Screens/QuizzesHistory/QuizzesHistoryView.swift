@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedDTO
 
 struct QuizzesHistoryView: View {
     @Environment(\.dismiss) private var dismiss

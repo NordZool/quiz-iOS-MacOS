@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import SharedDTO
+
+extension QuizGroupDTO: @retroactive Identifiable {}
 
 extension QuizGroupDTO: FlexibleGridViewSection {
     typealias Cell = QuizDTO

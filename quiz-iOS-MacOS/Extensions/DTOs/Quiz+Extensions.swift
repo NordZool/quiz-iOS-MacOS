@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedDTO
 
 extension QuizDTO {
     var formattedQuestionsCount: String? {
@@ -53,7 +54,7 @@ extension QuizDTO {
     }
 }
 // MARK: - Identifiable
-extension QuizDTO : Identifiable {
+extension QuizDTO : @retroactive Identifiable {
     
 }
 // MARK: - FlexibleGridViewCell
@@ -63,7 +64,7 @@ extension QuizDTO : FlexibleGridViewCell {
     }
 }
 // MARK: - Hashable
-extension QuizDTO : Hashable {
+extension QuizDTO : @retroactive Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }

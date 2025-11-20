@@ -1,0 +1,15 @@
+{
+  "originHash" : "c6a6870aaa8ba5d1e63f816c959492d600045cb0430bdea776b5886c1052a457",
+  "pins" : [
+    {
+      "identity" : "shareddto",
+      "kind" : "localSourceControl",
+      "location" : "/Users/admin/Projects/Cource work/SharedDTO",
+      "state" : {
+        "branch" : "main",
+        "revision" : "85b84fcafa964cc31e77fedcf6a7118f5d34a2b8"
+      }
+    }
+  ],
+  "version" : 3
+}

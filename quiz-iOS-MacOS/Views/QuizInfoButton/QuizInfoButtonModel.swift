@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedDTO
 
 struct QuizInfoButtonModel {
     static func latestQuiz(_ quiz: QuizDTO) -> QuizInfoButtonModel? {

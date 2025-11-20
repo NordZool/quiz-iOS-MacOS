@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedDTO
 
 struct ContentView: View {
     @EnvironmentObject var selectedQuizVM: SelectedQuizViewModel

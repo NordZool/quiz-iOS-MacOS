@@ -6,6 +6,7 @@
 //
 
 import Combine
+import SharedDTO
 
 final class SelectingQuizViewModel: ObservableObject {
     @Published var quizGroups: [QuizGroupDTO] = []

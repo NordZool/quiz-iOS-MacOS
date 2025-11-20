@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SharedDTO
 
 // MARK: - Identifiable
-extension QuizQuestionAnswerDTO : Identifiable {
+extension QuizQuestionAnswerDTO : @retroactive Identifiable {
     
 }

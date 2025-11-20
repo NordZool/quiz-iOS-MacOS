@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedDTO
 
 extension QuizQuestionStatus {
     var color: Color {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedDTO
 
 struct FlexibleSectionedGridView<S: FlexibleGridViewSection>: View {
     let sections: [S]

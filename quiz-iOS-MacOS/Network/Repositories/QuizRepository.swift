@@ -14,7 +14,9 @@ final class QuizRepository {
     private let client: Networking = NetworkClient.app
     
     private init() {}
-    
+}
+// MARK: - Requestis
+extension QuizRepository {
     func getQuizGroups() async throws -> [QuizGroupDTO] {
         try await self.client.request(AppEndpoint.quizGroups)
     }

@@ -20,6 +20,18 @@ final class NetworkClient: Networking {
     }
     
     func request<T: Decodable>(_ endpoint: Endpoint) async throws -> T {
+        let responseData = try await self.requesting(endpoint)
+        return try JSONDecoder().decode(T.self, from: responseData)
+    }
+    
+    func request(_ endpoint: Endpoint) async throws {
+        try await self.requesting(endpoint)
+    }
+}
+// MARK: - Request builder
+private extension NetworkClient {
+    @discardableResult
+    func requesting(_ endpoint: Endpoint) async throws -> Data {
         let request = try makeRequest(endpoint)
         
         let (data, response) = try await urlSession.data(for: request)
@@ -32,12 +44,10 @@ final class NetworkClient: Networking {
             throw NetworkError.invalidStatusCode(httpResponse.statusCode)
         }
         
-        return try JSONDecoder().decode(T.self, from: data)
+        return data
     }
-}
-// MARK: - Request builder
-extension NetworkClient {
-    private func makeRequest(_ endpoint: Endpoint) throws -> URLRequest {
+    
+    func makeRequest(_ endpoint: Endpoint) throws -> URLRequest {
         let url = baseURL.appendingPathComponent(endpoint.path)
         var request = URLRequest(url: url)
         

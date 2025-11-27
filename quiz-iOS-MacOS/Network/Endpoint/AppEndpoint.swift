@@ -15,6 +15,9 @@ enum AppEndpoint {
     // MARK: user
     case getUserSelectedQuiz
     case postUserSelectedQuiz(postDTO: SelectedQuizPostDTO)
+    
+    case userQuizHistory
+    case userQuizResult(quizId: UUID)
 }
 // MARK: - Endpoint
 extension AppEndpoint : Endpoint {
@@ -25,12 +28,18 @@ extension AppEndpoint : Endpoint {
             
         case .getUserSelectedQuiz, .postUserSelectedQuiz:
             "user/quiz/selected"
+            
+        case .userQuizHistory:
+            "user/quiz/history"
+            
+        case .userQuizResult(let id):
+            "user/quiz/\(id)result"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .quizGroups, .getUserSelectedQuiz:
+        case .quizGroups, .getUserSelectedQuiz, .userQuizResult, .userQuizHistory:
                 .get
             
         case .postUserSelectedQuiz:
@@ -47,6 +56,13 @@ extension AppEndpoint : Endpoint {
         case .postUserSelectedQuiz(let postDTO):
             postDTO.encoded
             
+        default:
+            nil
+        }
+    }
+    
+    var queryItems: [URLQueryItem]? {
+        switch self {
         default:
             nil
         }

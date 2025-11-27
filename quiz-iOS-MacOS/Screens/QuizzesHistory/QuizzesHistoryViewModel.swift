@@ -11,7 +11,19 @@ import SharedDTO
 class QuizzesHistoryViewModel : ObservableObject {
     @Published var quizzes: [QuizDTO] = []
     
+    // MARK: - Private properties
+    private let userRepository: UserRepository = .shared
+    
     init() {
-        self.quizzes = QuizDTO.mock + QuizDTO.mock + QuizDTO.mock
+        self.fetchQuizzes()
+    }
+}
+// MARK: - Private methods
+private extension QuizzesHistoryViewModel {
+    func fetchQuizzes() {
+        Task { [weak self] in
+            let historedQuizzes = try? await self?.userRepository.quizzesHistory()
+            self?.quizzes = historedQuizzes ?? []
+        }
     }
 }

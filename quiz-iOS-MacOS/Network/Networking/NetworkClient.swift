@@ -48,8 +48,14 @@ private extension NetworkClient {
     }
     
     func makeRequest(_ endpoint: Endpoint) throws -> URLRequest {
-        let url = baseURL.appendingPathComponent(endpoint.path)
+        var url = baseURL.appendingPathComponent(endpoint.path)
+        
+        if let queryItems = endpoint.queryItems, !queryItems.isEmpty {
+            url.append(queryItems: queryItems)
+        }
+        
         var request = URLRequest(url: url)
+        
         
         request.httpMethod = endpoint.method.rawValue
         

@@ -20,9 +20,16 @@ struct QuizInfoButtonModel {
             return nil
         }
         
+        let hintsText = if let hintsCount = quiz.hintsUseCount,
+                            hintsCount != 0 {
+            "(подсказок \(quiz.hintsUseCount ?? 0))"
+        } else {
+            "(без подсказок)"
+        }
+        
         return .init(title: title,
                      categoryText: quiz.name,
-                     questionsText: "\(answersCount) из \(questionsCount) (подсказок \(quiz.hintsUseCount ?? 0))",
+                     questionsText: "\(answersCount) из \(questionsCount) \(hintsText)",
                      rightAnswersText: String(rightAnswersCount))
     }
     

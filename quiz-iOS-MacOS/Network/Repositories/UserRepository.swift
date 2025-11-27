@@ -31,7 +31,7 @@ extension UserRepository {
         try await self.client.request(AppEndpoint.userQuizHistory)
     }
     
-    func quizResult(quizId: UUID) async throws -> [QuizQuestionDTO] {
+    func quizResult(quizId: UUID) async throws -> QuizDTO {
         try await self.client.request(AppEndpoint.userQuizResult(quizId: quizId))
     }
 }

@@ -97,5 +97,65 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7BEC6725-901E-47EB-AFA5-9EBE8FB16EB8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "quiz-iOS-MacOS/Screens/Result/QuizResultViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "fetchResultQuestions(quizId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7BEC6725-901E-47EB-AFA5-9EBE8FB16EB8 - 10693317dc6620f0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 () async -&gt; () in quiz_iOS_MacOS.QuizResultViewModel.fetchResultQuestions(quizId: Foundation.UUID) -&gt; ()"
+                  moduleName = "quiz-iOS-MacOS.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Projects/Cource%20work/Frontend/quiz-iOS-MacOS/quiz-iOS-MacOS/Screens/Result/QuizResultViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27">
+               </Location>
+               <Location
+                  uuid = "7BEC6725-901E-47EB-AFA5-9EBE8FB16EB8 - ac930112b23d9cfe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 () async -&gt; () in quiz_iOS_MacOS.QuizResultViewModel.fetchResultQuestions(quizId: Foundation.UUID) -&gt; ()"
+                  moduleName = "quiz-iOS-MacOS.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Projects/Cource%20work/Frontend/quiz-iOS-MacOS/quiz-iOS-MacOS/Screens/Result/QuizResultViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27">
+               </Location>
+               <Location
+                  uuid = "7BEC6725-901E-47EB-AFA5-9EBE8FB16EB8 - d007810ff203aff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 () async -&gt; () in quiz_iOS_MacOS.QuizResultViewModel.fetchResultQuestions(quizId: Foundation.UUID) -&gt; ()"
+                  moduleName = "quiz-iOS-MacOS.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Projects/Cource%20work/Frontend/quiz-iOS-MacOS/quiz-iOS-MacOS/Screens/Result/QuizResultViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

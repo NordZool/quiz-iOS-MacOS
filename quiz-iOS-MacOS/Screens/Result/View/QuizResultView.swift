@@ -20,7 +20,8 @@ struct QuizResultView: View {
             ZStack(alignment: .top) {
                 ScrollView {
                     VStack(spacing: 22) {
-                        ForEach(Array(zip(vm.questions.indices, vm.questions)), id: \.0) { (index,  question) in
+                        let questions = vm.quiz?.questions ?? []
+                        ForEach(Array(zip(questions.indices, questions)), id: \.0) { (index,  question) in
                             QuizResultQuestionView(index: index,
                                                    question: question) {
                                 self.hintedQuestion = question
@@ -31,6 +32,7 @@ struct QuizResultView: View {
                     .padding(.horizontal, .appTopViewHorizontalPadding)
                     .padding(.vertical, 16)
                 }
+                .frame(maxWidth: .infinity)
                 .background(.secondaryBackground)
                 
                 TitleWithCloseButtonView(title: "Отчет по игре") {

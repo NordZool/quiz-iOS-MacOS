@@ -33,7 +33,7 @@ extension AppEndpoint : Endpoint {
             "user/quiz/history"
             
         case .userQuizResult(let id):
-            "user/quiz/\(id)result"
+            "user/quiz/\(id)/result"
         }
     }
     

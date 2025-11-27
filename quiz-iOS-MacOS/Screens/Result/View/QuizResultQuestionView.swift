@@ -9,6 +9,7 @@ import SwiftUI
 import SharedDTO
 
 struct QuizResultQuestionView: View {
+    let isLast: Bool
     let index: Int
     let question: QuizQuestionDTO
     let showTheory: (() -> Void)?
@@ -63,14 +64,16 @@ extension QuizResultQuestionView {
             }
             .appButtonStyled(tint: .secondaryBackgroundDark)
             
-            Rectangle()
-                .fill(.secondaryBackgroundDark)
-                .frame(height: 1)
-                .padding(.top, 4)
+            if !isLast {
+                Rectangle()
+                    .fill(.secondaryBackgroundDark)
+                    .frame(height: 1)
+                    .padding(.top, 4)
+            }
         }
     }
 }
 #Preview {
-    QuizResultQuestionView(index: 0, question: .mock(), showTheory: nil)
+    QuizResultQuestionView(isLast: true, index: 0, question: .mock(), showTheory: nil)
         .padding(.horizontal, 10)
 }

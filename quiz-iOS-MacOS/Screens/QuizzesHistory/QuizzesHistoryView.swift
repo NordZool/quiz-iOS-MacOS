@@ -33,6 +33,7 @@ struct QuizzesHistoryView: View {
                 .padding(.top, .forEqualToTopTitleViewPadding)
                 .padding(.vertical, 12)
             }
+            .frame(maxWidth: .infinity)
             .background(.secondaryBackground)
             
             TitleWithCloseButtonView(title: "История игр") {

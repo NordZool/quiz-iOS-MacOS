@@ -18,6 +18,8 @@ struct ContentView: View {
     @State private var isHistoryQuizzesSheetPresented: Bool = false
     @State private var quizForResult: QuizDTO? = nil
     
+    @State private var isChooseQuizAlertPreservated: Bool = false
+    
     var body: some View {
         VStack(spacing: 10) {
             Spacer()
@@ -60,6 +62,14 @@ struct ContentView: View {
                 .sheet(item: self.$quizForResult) { quiz in
                     QuizResultView(vm: .init(quizId: quiz.id))
                 }
+                .alert("Выберите категорию", isPresented: self.$isChooseQuizAlertPreservated) {
+                    Button {
+                        self.isChooseQuizSheetPresented.toggle()
+                    } label: {
+                        Text("Хорошо")
+                    }
+
+                }
             
             Spacer()
             Spacer()
@@ -97,9 +107,12 @@ private extension ContentView {
     
     var startGameButton: some View {
         Button {
-            Task {
-                await self.startQuizVM.startQuiz(id: .init())
+            guard let selecteQuizId = self.selectedQuizVM.quiz?.id else {
+                self.isChooseQuizAlertPreservated.toggle()
+                return
             }
+            
+            self.startQuizVM.startQuiz(id: selecteQuizId)
         } label: {
             Text("Играть")
                 .font(.title)

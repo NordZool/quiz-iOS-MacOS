@@ -20,4 +20,8 @@ extension QuizRepository {
     func getQuizGroups() async throws -> [QuizGroupDTO] {
         try await self.client.request(AppEndpoint.quizGroups)
     }
+    
+    func playQuiz(quizId: UUID) async throws -> QuizDTO {
+        try await self.client.request(AppEndpoint.quizPlay(quizId: quizId))
+    }
 }

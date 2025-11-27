@@ -23,6 +23,7 @@ struct SelectingQuizView: View {
                 .padding(.horizontal, .appTopViewHorizontalPadding)
                 .padding(.vertical, 20)
             }
+            .frame(maxWidth: .infinity)
             .background(.secondaryBackground)
             
             self.topTitleView

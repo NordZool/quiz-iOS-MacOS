@@ -12,7 +12,15 @@ import SharedDTO
 class StartQuizViewModel : ObservableObject {
     @Published var quiz: QuizDTO?
     
-    func startQuiz(id: UUID) async {
-        self.quiz = .mock.first
+    // MARK: - Private properties
+    private let quizRepository: QuizRepository = .shared
+}
+// MARK: Intenal methods
+internal extension StartQuizViewModel {
+    func startQuiz(id: UUID) {
+        Task { [weak self] in
+            let quiz = try? await self?.quizRepository.playQuiz(quizId: id)
+            self?.quiz = quiz
+        }
     }
 }

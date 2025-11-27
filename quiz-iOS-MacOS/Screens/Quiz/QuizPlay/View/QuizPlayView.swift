@@ -36,13 +36,6 @@ struct QuizPlayView: View {
                 }
             }
         }
-        .onAppear() {
-            DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-                withAnimation {
-                    self.vm.quiz.questions?[0].answers?[0].isCorrect = true
-                }
-            }
-        }
     }
 }
 // MARK: - Subviews

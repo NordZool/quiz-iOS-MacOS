@@ -37,6 +37,7 @@ extension QuizQuestionView {
                 .background(.defaultBackground)
                 .cornerRadius(16)
                 .appShadow()
+                .multilineTextAlignment(.center)
             
             SimpleImagedButton.info {
                 self.hintButtonAction?()
@@ -61,6 +62,7 @@ extension QuizQuestionView {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .primaryAppButtonStyled(tint: self.question.answerColor(for: answer))
+        .animation(.linear, value: self.question)
         
     }
 }

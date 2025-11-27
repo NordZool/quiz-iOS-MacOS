@@ -11,6 +11,7 @@ import SharedDTO
 enum AppEndpoint {
     // MARK: quiz
     case quizGroups
+    case quizPlay(quizId: UUID)
     
     // MARK: user
     case getUserSelectedQuiz
@@ -25,6 +26,9 @@ extension AppEndpoint : Endpoint {
         switch self {
         case .quizGroups:
             "quiz/group"
+            
+        case .quizPlay(let id):
+            "quiz/\(id)/play"
             
         case .getUserSelectedQuiz, .postUserSelectedQuiz:
             "user/quiz/selected"
@@ -42,7 +46,7 @@ extension AppEndpoint : Endpoint {
         case .quizGroups, .getUserSelectedQuiz, .userQuizResult, .userQuizHistory:
                 .get
             
-        case .postUserSelectedQuiz:
+        case .postUserSelectedQuiz, .quizPlay:
                 .post
         }
     }

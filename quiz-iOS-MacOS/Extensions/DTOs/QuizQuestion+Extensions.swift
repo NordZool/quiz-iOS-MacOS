@@ -21,9 +21,13 @@ extension QuizQuestionDTO {
         }
     }
 }
-
 // MARK: - Identifiable
 extension QuizQuestionDTO : @retroactive Identifiable {
     
 }
-
+// MARK: - Equatable
+extension QuizQuestionDTO : @retroactive Equatable {
+    public static func == (lhs: QuizQuestionDTO, rhs: QuizQuestionDTO) -> Bool {
+        lhs.id == rhs.id
+    }
+}

@@ -21,8 +21,10 @@ struct QuizResultView: View {
                 ScrollView {
                     VStack(spacing: 22) {
                         let questions = vm.quiz?.questions ?? []
-                        ForEach(Array(zip(questions.indices, questions)), id: \.0) { (index,  question) in
-                            QuizResultQuestionView(index: index,
+                        let zippedQuestions = Array(zip(questions.indices, questions))
+                        ForEach(zippedQuestions, id: \.0) { (index,  question) in
+                            QuizResultQuestionView(isLast: zippedQuestions.endIndex - 1 == index,
+                                                   index: index,
                                                    question: question) {
                                 self.hintedQuestion = question
                             }

@@ -27,7 +27,7 @@ struct ContentView: View {
             Spacer()
             Spacer()
             
-            CurrentCategoryButtonView(currentCategoryName: selectedQuizVM.quiz?.name) {
+            SelectedQuizButtonView(currentCategoryName: selectedQuizVM.quiz?.name) {
                 self.isChooseQuizSheetPresented.toggle()
             }
             .sheet(isPresented: self.$isChooseQuizSheetPresented) {

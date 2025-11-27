@@ -14,7 +14,7 @@ struct FlexibleSectionedGridView<S: FlexibleGridViewSection>: View {
     @Binding var selectedCell: S.Cell?
     
     var body: some View {
-        LazyVStack(spacing: 0) {
+        VStack(spacing: 0) {
             ForEach(sections) { section in
                 Section {
                     self.sectionContent(for: section)

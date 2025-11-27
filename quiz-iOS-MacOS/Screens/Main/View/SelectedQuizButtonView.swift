@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CurrentCategoryButtonView: View {
+struct SelectedQuizButtonView: View {
     
     private let action: @MainActor () -> Void
     private var currentCategoryName: String?
@@ -30,6 +30,7 @@ struct CurrentCategoryButtonView: View {
                             .font(.subheadline)
                     }
                 }
+                .multilineTextAlignment(.leading)
                 
                 Spacer()
                 
@@ -46,6 +47,6 @@ struct CurrentCategoryButtonView: View {
 }
 
 #Preview {
-    CurrentCategoryButtonView(currentCategoryName: "Основной", action:   {} )
+    SelectedQuizButtonView(currentCategoryName: "Основной", action:   {} )
         .frame(width: 300)
 }

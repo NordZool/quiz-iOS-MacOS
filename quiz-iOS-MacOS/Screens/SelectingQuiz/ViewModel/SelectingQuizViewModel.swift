@@ -11,7 +11,20 @@ import SharedDTO
 final class SelectingQuizViewModel: ObservableObject {
     @Published var quizGroups: [QuizGroupDTO] = []
     
+    // MARK: - Private properties
+    private let quizRepository: QuizRepository = .shared
+    
     init() {
-        self.quizGroups = QuizGroupDTO.mock + QuizGroupDTO.mock + QuizGroupDTO.mock
+        self.fetchQuizGroups()
+    }
+}
+// MARK: - Private methods
+private extension SelectingQuizViewModel {
+    func fetchQuizGroups() {
+        Task {[weak self] in
+            let groups = try? await self?.quizRepository.getQuizGroups()
+            guard let self else { return }
+            self.quizGroups = groups ?? []
+        }
     }
 }

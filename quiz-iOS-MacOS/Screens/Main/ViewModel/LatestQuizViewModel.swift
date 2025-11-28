@@ -11,5 +11,18 @@ import SharedDTO
 class LatestQuizViewModel: ObservableObject {
     @Published var quiz: QuizDTO?
     
+    // MARK: - Private properties
+    private let userRepository: UserRepository = .shared
     
+    init() {
+        self.requestLatestQuiz()
+    }
+}
+// MARK: - Internal methods
+internal extension LatestQuizViewModel {
+    func requestLatestQuiz() {
+        Task { [weak self] in
+            self?.quiz = try? await self?.userRepository.quizLatest()
+        }
+    }
 }

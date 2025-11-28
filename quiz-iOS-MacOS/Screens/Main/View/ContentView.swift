@@ -83,6 +83,7 @@ struct ContentView: View {
     
     func onQuizPlayEnded(_ quiz: QuizDTO) {
         self.quizForResult = quiz
+        self.latestQuizVM.requestLatestQuiz()
     }
 }
 // MARK: - Subviews

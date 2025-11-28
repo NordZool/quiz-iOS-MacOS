@@ -10,7 +10,7 @@ import SharedDTO
 
 struct QuizInfoButtonModel {
     static func latestQuiz(_ quiz: QuizDTO) -> QuizInfoButtonModel? {
-        self.quiz(quiz, title: "Информация о прошлой игре")
+        self.quiz(quiz, title: "Информация о прошлой игре:")
     }
     
     static func quiz(_ quiz: QuizDTO, title: String? = nil) -> QuizInfoButtonModel? {

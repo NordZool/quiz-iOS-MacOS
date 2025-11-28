@@ -46,16 +46,15 @@ extension QuizResultQuestionView {
                 .font(.title3)
                 .foregroundStyle(.appForegroundDark)
             VStack(alignment: .leading, spacing: 4) {
-                if let rightAnswer = question.rightAnswer?.text,
-                    let userAnswer = question.userAnswer?.text {
-                    Text("Ответ: \(rightAnswer)")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                    Text("Ваш ответ: \(userAnswer)" )
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
+                Text("Ответ: \(question.rightAnswer?.text ?? "(Скрыт)")")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                
+                Text("Ваш ответ: \(question.userAnswer?.text ?? "(Вы не ответили)")" )
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
             }
+            
             Button(action: self.showTheory ?? { }) {
                 Text("Показать теорию")
                     .padding(.vertical,  6)

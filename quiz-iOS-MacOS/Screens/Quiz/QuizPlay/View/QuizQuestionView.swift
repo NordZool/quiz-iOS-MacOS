@@ -10,6 +10,7 @@ import SharedDTO
 
 struct QuizQuestionView: View {
     let question: QuizQuestionDTO
+    let answerButtonAction: ((QuizQuestionAnswerDTO) -> Void)
     let hintButtonAction: (() -> Void)?
     
     var body: some View {
@@ -50,7 +51,7 @@ extension QuizQuestionView {
         VStack(spacing: 12) {
             ForEach(self.question.answers ?? []) { answer in
                 self.answerButton(for: answer) {
-                    //
+                    self.answerButtonAction(answer)
                 }
             }
         }
@@ -62,11 +63,10 @@ extension QuizQuestionView {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .primaryAppButtonStyled(tint: self.question.answerColor(for: answer))
-        .animation(.linear, value: self.question)
         
     }
 }
 
 #Preview {
-    QuizQuestionView(question: .mock(), hintButtonAction: nil)
+    QuizQuestionView(question: .mock(), answerButtonAction: {_ in }, hintButtonAction: nil)
 }

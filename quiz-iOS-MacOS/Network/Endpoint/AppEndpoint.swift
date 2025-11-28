@@ -19,6 +19,7 @@ enum AppEndpoint {
     
     case userQuizHistory
     case userQuizResult(quizId: UUID)
+    case userQuizAnswer(quizId: UUID, postDTO: QuizAnswerPostDTO)
 }
 // MARK: - Endpoint
 extension AppEndpoint : Endpoint {
@@ -38,6 +39,9 @@ extension AppEndpoint : Endpoint {
             
         case .userQuizResult(let id):
             "user/quiz/\(id)/result"
+            
+        case .userQuizAnswer(let id, _):
+            "user/quiz/\(id)/answer"
         }
     }
     
@@ -46,7 +50,7 @@ extension AppEndpoint : Endpoint {
         case .quizGroups, .getUserSelectedQuiz, .userQuizResult, .userQuizHistory:
                 .get
             
-        case .postUserSelectedQuiz, .quizPlay:
+        case .postUserSelectedQuiz, .quizPlay, .userQuizAnswer:
                 .post
         }
     }
@@ -57,7 +61,8 @@ extension AppEndpoint : Endpoint {
     
     var body: Data? {
         switch self {
-        case .postUserSelectedQuiz(let postDTO):
+        case .postUserSelectedQuiz(let postDTO as Encodable),
+             .userQuizAnswer(_, let postDTO as Encodable):
             postDTO.encoded
             
         default:

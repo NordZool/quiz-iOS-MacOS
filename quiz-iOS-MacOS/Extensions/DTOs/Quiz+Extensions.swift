@@ -25,16 +25,21 @@ extension QuizDTO {
         }
     }
     
+    var rightAnswersCountUnwrapped: Int {
+        self.rightAnswersCount ?? 0
+    }
+    
+    var answersCountUnwrapped: Int {
+        self.answersCount ?? 0
+    }
+    
     var rightAnswersPercentage: Double? {
-        if let rightAnswersCount, let answersCount {
-            guard answersCount > 0 else {
-                return 0
-            }
-            
-            return 100 * Double(rightAnswersCount) / Double(answersCount)
-        } else {
-            return nil
+        let answersCountUnwrapped = self.answersCountUnwrapped
+        guard answersCountUnwrapped > 0 else {
+            return 0
         }
+        
+        return 100 * Double(rightAnswersCountUnwrapped) / Double(answersCountUnwrapped)
     }
     
     var rightAnswersPercentageText: String? {
@@ -46,8 +51,8 @@ extension QuizDTO {
     }
     
     var rightAnswersCountAndPercentageText: String? {
-        if let rightAnswersCount, let rightAnswersPercentageText {
-            "\(rightAnswersCount) | \(rightAnswersPercentageText)"
+        if let rightAnswersPercentageText {
+            "\(rightAnswersCountUnwrapped) | \(rightAnswersPercentageText)"
         } else {
             nil
         }

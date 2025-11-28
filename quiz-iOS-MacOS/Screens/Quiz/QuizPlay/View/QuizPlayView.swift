@@ -27,6 +27,7 @@ struct QuizPlayView: View {
                         
                         self.topView
                     }
+                    .animation(.linear, value: self.vm.quiz)
                 }
                 
                 PopupContainer(item: self.$hintedQuestion) { hintedQuestion in
@@ -47,9 +48,15 @@ extension QuizPlayView {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
                 ForEach(self.vm.quiz.questions ?? []) { question in
-                    QuizQuestionView(question: question) {
+                    QuizQuestionView(question: question,
+
+                                     answerButtonAction: { answer in
+                        self.vm.answer(questionId: question.id,
+                                       answerId: answer.id)
+                    },
+                                     hintButtonAction: {
                         self.hintedQuestion = question
-                    }
+                    })
                     .padding(.horizontal)
                     .padding(.top)
                     .padding(.bottom, topInset + 30)

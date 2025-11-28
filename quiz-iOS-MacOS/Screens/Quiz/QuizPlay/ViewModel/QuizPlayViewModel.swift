@@ -12,6 +12,8 @@ import SharedDTO
 class QuizPlayViewModel : ObservableObject {
     @Published var quiz: QuizDTO
     
+    @Published var forceDismissView: Bool = false
+    
     // MARK: - Private properties
     private let userRepository: UserRepository = .shared
     
@@ -28,6 +30,10 @@ internal extension QuizPlayViewModel {
                                                                                 postDTO: .init(questionId: questionId,
                                                                                                answerId: answerId)) {
                 self?.quiz = updatedQuiz
+                if let allQuestionsAnswered = self?.quiz.questions?.allSatisfy({$0.userAnswer != nil}),
+                    allQuestionsAnswered {
+                    self?.forceDismissView = true
+                }
             }
         }
     }

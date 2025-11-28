@@ -37,6 +37,16 @@ struct QuizPlayView: View {
                 }
             }
         }
+        .onChange(of: self.vm.forceDismissView) { oldValue, newValue in
+            if newValue {
+                self.closeView()
+            }
+        }
+    }
+    
+    func closeView() {
+        self.dismiss.callAsFunction()
+        self.onQuizEnd?(self.vm.quiz)
     }
 }
 // MARK: - Subviews
@@ -79,8 +89,7 @@ extension QuizPlayView {
                 Spacer()
                 
                 Button {
-                    self.dismiss.callAsFunction()
-                    self.onQuizEnd?(self.vm.quiz)
+                    self.closeView()
                 } label: {
                     Text("Завершить")
                 }

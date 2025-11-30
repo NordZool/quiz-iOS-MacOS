@@ -12,7 +12,9 @@ struct QuizResultQuestionView: View {
     let isLast: Bool
     let index: Int
     let question: QuizQuestionDTO
+    let isShowTheoryButton: Bool
     let showTheory: (() -> Void)?
+    
     
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
@@ -20,9 +22,8 @@ struct QuizResultQuestionView: View {
                 .frame(width: 70, height: 70)
                 
             self.rightView
-                .frame(maxWidth: .infinity)
                 
-            
+            Spacer()
         }
     }
 }
@@ -55,13 +56,15 @@ extension QuizResultQuestionView {
                     .foregroundStyle(.secondary)
             }
             
-            Button(action: self.showTheory ?? { }) {
-                Text("Показать теорию")
-                    .padding(.vertical,  6)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(.secondaryForegroundDark)
+            if self.isShowTheoryButton {
+                Button(action: self.showTheory ?? { }) {
+                    Text("Показать теорию")
+                        .padding(.vertical,  6)
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.secondaryForegroundDark)
+                }
+                .appButtonStyled(tint: .secondaryBackgroundDark)
             }
-            .appButtonStyled(tint: .secondaryBackgroundDark)
             
             if !isLast {
                 Rectangle()
@@ -73,6 +76,6 @@ extension QuizResultQuestionView {
     }
 }
 #Preview {
-    QuizResultQuestionView(isLast: true, index: 0, question: .mock(), showTheory: nil)
+    QuizResultQuestionView(isLast: true, index: 0, question: .mock(), isShowTheoryButton: true, showTheory: nil)
         .padding(.horizontal, 10)
 }

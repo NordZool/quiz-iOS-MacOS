@@ -12,8 +12,7 @@ struct QuizResultView: View {
     @Environment(\.dismiss) var dismiss
     
     @StateObject var vm: QuizResultViewModel
-    
-    @State private var hintedQuestion: QuizQuestionDTO? = nil
+    @StateObject var hintingVM: QuizHintingViewModel = .init()
     
     var body: some View {
         ZStack {
@@ -23,10 +22,16 @@ struct QuizResultView: View {
                         let questions = vm.quiz?.questions ?? []
                         let zippedQuestions = Array(zip(questions.indices, questions))
                         ForEach(zippedQuestions, id: \.0) { (index,  question) in
+                            // не нужный пока функционал теории
+                            let isShowTheoryButton: Bool = false
                             QuizResultQuestionView(isLast: zippedQuestions.endIndex - 1 == index,
-                                                   index: index,
-                                                   question: question) {
-                                self.hintedQuestion = question
+                                                   index: index + 1,
+                                                   question: question,
+                                                   isShowTheoryButton: isShowTheoryButton) {
+                                if let quizId = self.vm.quiz?.id {
+                                    self.hintingVM.getHint(quizId: quizId,
+                                                           questioId: question.id)
+                                }
                             }
                         }
                     }
@@ -43,9 +48,9 @@ struct QuizResultView: View {
                 .appTopView()
             }
             
-            PopupContainer(item: self.$hintedQuestion) { question in
-                HintView.theory(hint: "Подсказко") {
-                    self.hintedQuestion = nil
+            PopupContainer(item: self.$hintingVM.activeHint) { question in
+                HintView.theory(hint: self.hintingVM.activeHint ?? "") {
+                    self.hintingVM.activeHint = nil
                 }
             }
         }

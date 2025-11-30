@@ -10,6 +10,7 @@ import SharedDTO
 
 struct QuizQuestionView: View {
     let question: QuizQuestionDTO
+    let isShowHintButton: Bool
     let answerButtonAction: ((QuizQuestionAnswerDTO) -> Void)
     let hintButtonAction: (() -> Void)?
     
@@ -35,15 +36,18 @@ extension QuizQuestionView {
             Text(self.question.text)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .font(.title2)
+                .padding(.horizontal)
                 .background(.defaultBackground)
                 .cornerRadius(16)
                 .appShadow()
                 .multilineTextAlignment(.center)
             
-            SimpleImagedButton.info {
-                self.hintButtonAction?()
+            if self.isShowHintButton {
+                SimpleImagedButton.info {
+                    self.hintButtonAction?()
+                }
+                .padding()
             }
-            .padding()
         }
     }
     
@@ -68,5 +72,5 @@ extension QuizQuestionView {
 }
 
 #Preview {
-    QuizQuestionView(question: .mock(), answerButtonAction: {_ in }, hintButtonAction: nil)
+    QuizQuestionView(question: .mock(), isShowHintButton: true, answerButtonAction: {_ in }, hintButtonAction: nil)
 }

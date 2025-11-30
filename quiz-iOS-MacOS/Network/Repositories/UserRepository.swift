@@ -43,4 +43,8 @@ extension UserRepository {
     func quizLatest() async throws -> QuizDTO {
         try await self.client.request(AppEndpoint.userQuizLatest)
     }
+    
+    func getHint(quizId: UUID, queryItems: [URLQueryItem]) async throws -> String {
+        try await self.client.request(AppEndpoint.userQuizHint(quizId: quizId, queryItems: queryItems))
+    }
 }

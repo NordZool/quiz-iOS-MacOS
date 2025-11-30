@@ -21,6 +21,7 @@ enum AppEndpoint {
     case userQuizResult(quizId: UUID)
     case userQuizAnswer(quizId: UUID, postDTO: QuizAnswerPostDTO)
     case userQuizLatest
+    case userQuizHint(quizId: UUID, queryItems: [URLQueryItem])
 }
 // MARK: - Endpoint
 extension AppEndpoint : Endpoint {
@@ -46,12 +47,15 @@ extension AppEndpoint : Endpoint {
             
         case .userQuizLatest:
             "user/quiz/latest"
+            
+        case .userQuizHint(let quizId, _):
+            "user/quiz/\(quizId)/hint"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .quizGroups, .getUserSelectedQuiz, .userQuizResult, .userQuizHistory, .userQuizLatest:
+        case .quizGroups, .getUserSelectedQuiz, .userQuizResult, .userQuizHistory, .userQuizLatest, .userQuizHint:
                 .get
             
         case .postUserSelectedQuiz, .quizPlay, .userQuizAnswer:
@@ -76,6 +80,9 @@ extension AppEndpoint : Endpoint {
     
     var queryItems: [URLQueryItem]? {
         switch self {
+        case .userQuizHint(_, let queryItems):
+            queryItems
+            
         default:
             nil
         }

@@ -28,6 +28,7 @@ struct HintView: View {
             VStack(alignment: .leading, spacing: 18) {
                 self.separatorView
                 self.hintView
+                    .frame(maxWidth: .infinity)
                 self.buttonView
             }
         }
@@ -56,6 +57,7 @@ private extension HintView {
         Text(self.hint)
             .font(.subheadline)
             .foregroundStyle(.secondary)
+            .multilineTextAlignment(.center)
     }
     
     var buttonView: some View {

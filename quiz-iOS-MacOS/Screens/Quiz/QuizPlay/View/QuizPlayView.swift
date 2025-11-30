@@ -12,8 +12,7 @@ struct QuizPlayView: View {
     @Environment(\.dismiss) var dismiss
     
     @StateObject var vm: QuizPlayViewModel
-    
-    @State private var hintedQuestion: QuizQuestionDTO? = nil
+    @StateObject var hintingVM: QuizHintingViewModel = .init()
     
     let onQuizEnd: ((QuizDTO) -> ())?
     
@@ -30,9 +29,9 @@ struct QuizPlayView: View {
                     .animation(.linear, value: self.vm.quiz)
                 }
                 
-                PopupContainer(item: self.$hintedQuestion) { hintedQuestion in
-                    HintView.quizQuestionHint(hint: "Подсказка") {
-                        self.hintedQuestion = nil
+                PopupContainer(item: self.$hintingVM.activeHint) { hintedQuestion in
+                    HintView.quizQuestionHint(hint: self.hintingVM.activeHint ?? "") {
+                        self.hintingVM.activeHint = nil
                     }
                 }
             }
@@ -59,13 +58,15 @@ extension QuizPlayView {
             VStack(spacing: 0) {
                 ForEach(self.vm.quiz.questions ?? []) { question in
                     QuizQuestionView(question: question,
+                                     isShowHintButton: question.hintable == true,
 
                                      answerButtonAction: { answer in
                         self.vm.answer(questionId: question.id,
                                        answerId: answer.id)
                     },
                                      hintButtonAction: {
-                        self.hintedQuestion = question
+                        self.hintingVM.getHint(quizId: self.vm.quiz.id,
+                                               questioId: question.id)
                     })
                     .padding(.horizontal)
                     .padding(.top)

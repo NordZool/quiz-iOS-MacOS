@@ -27,10 +27,16 @@ struct QuizInfoButtonModel {
             "(без подсказок)"
         }
         
+        let rightAnswersText = if let rightAnswersPercentageText = quiz.rightAnswersPercentageText {
+            "\(String(rightAnswersCount)) (\(rightAnswersPercentageText))"
+        } else {
+            "\(String(rightAnswersCount))"
+        }
+        
         return .init(title: title,
                      categoryText: quiz.name,
                      questionsText: "\(answersCount) из \(questionsCount) \(hintsText)",
-                     rightAnswersText: String(rightAnswersCount))
+                     rightAnswersText: rightAnswersText)
     }
     
     static var empty: QuizInfoButtonModel {

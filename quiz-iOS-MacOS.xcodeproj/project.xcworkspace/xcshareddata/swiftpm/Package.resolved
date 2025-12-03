@@ -1,10 +1,10 @@
 {
-  "originHash" : "c6a6870aaa8ba5d1e63f816c959492d600045cb0430bdea776b5886c1052a457",
+  "originHash" : "20e4de68426f3825459daaab3ecd5d3ac3498d50881f2085f54a06aa6a154c0d",
   "pins" : [
     {
-      "identity" : "shareddto",
-      "kind" : "localSourceControl",
-      "location" : "/Users/admin/Projects/Cource work/SharedDTO",
+      "identity" : "quiz-shared-dto",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/NordZool/quiz-shared-dto.git",
       "state" : {
         "branch" : "main",
         "revision" : "4a5ad18d4cb928fd4accca1a9dfe1f9243e3117c"

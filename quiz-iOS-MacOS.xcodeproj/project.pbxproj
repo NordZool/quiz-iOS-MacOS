@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8401B0D12EE04D3900940E59 /* SharedDTO in Frameworks */ = {isa = PBXBuildFile; productRef = 8401B0D02EE04D3900940E59 /* SharedDTO */; };
 		84AF9D152ECF3D570024CDE8 /* SharedDTO in Frameworks */ = {isa = PBXBuildFile; productRef = 84AF9D142ECF3D570024CDE8 /* SharedDTO */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84AF9D152ECF3D570024CDE8 /* SharedDTO in Frameworks */,
+				8401B0D12EE04D3900940E59 /* SharedDTO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +73,7 @@
 			name = "quiz-iOS-MacOS";
 			packageProductDependencies = (
 				84AF9D142ECF3D570024CDE8 /* SharedDTO */,
+				8401B0D02EE04D3900940E59 /* SharedDTO */,
 			);
 			productName = "quiz-iOS-MacOS";
 			productReference = 847361EA2EBDFA29009C127B /* quiz-iOS-MacOS.app */;
@@ -101,7 +104,7 @@
 			mainGroup = 847361E12EBDFA29009C127B;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				846BB30E2ECF421A00494820 /* XCRemoteSwiftPackageReference "SharedDTO" */,
+				8401B0CF2EE04D3900940E59 /* XCRemoteSwiftPackageReference "quiz-shared-dto" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 847361EB2EBDFA29009C127B /* Products */;
@@ -358,9 +361,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		846BB30E2ECF421A00494820 /* XCRemoteSwiftPackageReference "SharedDTO" */ = {
+		8401B0CF2EE04D3900940E59 /* XCRemoteSwiftPackageReference "quiz-shared-dto" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "file:///Users/admin/Projects/Cource work/SharedDTO";
+			repositoryURL = "https://github.com/NordZool/quiz-shared-dto.git";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -369,6 +372,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8401B0D02EE04D3900940E59 /* SharedDTO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8401B0CF2EE04D3900940E59 /* XCRemoteSwiftPackageReference "quiz-shared-dto" */;
+			productName = SharedDTO;
+		};
 		84AF9D142ECF3D570024CDE8 /* SharedDTO */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedDTO;

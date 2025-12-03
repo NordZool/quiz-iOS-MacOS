@@ -6,7 +6,7 @@
 //
 import Foundation
 
-final class NetworkClient: Networking {
+final class NetworkClient {
     private let baseURL: URL
     private let urlSession: URLSession
     
@@ -18,7 +18,9 @@ final class NetworkClient: Networking {
         self.baseURL = baseURL
         self.urlSession = urlSession
     }
-    
+}
+// MARK: - Networking
+extension NetworkClient: Networking {
     func request<T: Decodable>(_ endpoint: Endpoint) async throws -> T {
         let responseData = try await self.requesting(endpoint)
         return try JSONDecoder().decode(T.self, from: responseData)
@@ -55,7 +57,6 @@ private extension NetworkClient {
         }
         
         var request = URLRequest(url: url)
-        
         
         request.httpMethod = endpoint.method.rawValue
         

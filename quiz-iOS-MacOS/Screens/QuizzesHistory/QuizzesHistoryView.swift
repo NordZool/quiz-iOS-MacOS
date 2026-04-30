@@ -33,6 +33,9 @@ struct QuizzesHistoryView: View {
                 .padding(.top, .forEqualToTopTitleViewPadding)
                 .padding(.vertical, 12)
             }
+            .onTapGesture(perform: {
+                //
+            })
             .frame(maxWidth: .infinity)
             .background(.secondaryBackground)
             

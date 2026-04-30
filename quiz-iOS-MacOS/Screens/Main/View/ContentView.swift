@@ -91,7 +91,7 @@ private extension ContentView {
     var appLogoView: some View {
         Text("QUIZ")
             .foregroundStyle(.appPrimary)
-            .font(.system(size: 90, weight: .semibold))
+            .font(.system(size: UIFontMetrics.default.scaledValue(for: 90), weight: .semibold))
     }
     
     var historyButton: some View {

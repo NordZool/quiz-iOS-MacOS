@@ -22,8 +22,7 @@ struct QuizResultQuestionView: View {
                 .frame(width: 70, height: 70)
                 
             self.rightView
-                
-            Spacer()
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
@@ -46,6 +45,8 @@ extension QuizResultQuestionView {
             Text(question.text)
                 .font(.title3)
                 .foregroundStyle(.appForegroundDark)
+                .fixedSize(horizontal: false, vertical: true)
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text("Ответ: \(question.rightAnswer?.text ?? "(Скрыт)")")
                     .font(.footnote)
@@ -55,6 +56,7 @@ extension QuizResultQuestionView {
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
+            .fixedSize(horizontal: false, vertical: true)
             
             if self.isShowTheoryButton {
                 Button(action: self.showTheory ?? { }) {

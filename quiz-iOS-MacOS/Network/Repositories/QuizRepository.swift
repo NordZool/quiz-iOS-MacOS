@@ -15,7 +15,7 @@ final class QuizRepository {
     
     private init() {}
 }
-// MARK: - Requestis
+// MARK: - Requests
 extension QuizRepository {
     func getQuizGroups() async throws -> [QuizGroupDTO] {
         try await self.client.request(AppEndpoint.quizGroups)
